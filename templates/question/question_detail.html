@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+<title>{{ question.title|title}}</title>
+{% endblock title %}
+
+{% block content %}
+<!-- Navigation  -->
+{% include 'navigation.html' %}
+
+<!-- SideNav  -->
+{% include 'sidenav.html' %}
+
+<!-- Content  -->
+<div class="container">
+    <div class="section">
+        <!-- Course Questions  -->
+        <div class="section">
+            <h4>{{ course.title|title }}</h4>
+            <div class="divider"></div>
+        </div>
+
+        <div class="row">
+            <!-- Course Sidenav  -->
+            {% include 'classroom/course_sidenav.html' with nav_course_questions='active' %}
+            <!-- Question -->
+            <div class="col s9">
+                <div class="section">
+                    <h4>Questions</h4>
+                    <div class="divider"></div>
+                    <div><h5>{{ question.title }}</h5></div>
+                    <div>{{ question.content | safe }}</div>
+                    <div>
+                        <div class="divider"></div>
+                        <h4><b>Asked by</b></h4>
+                    </div>
+                    <div class="col s12">
+                        <div class="card-panel grey lighten-5 z-depth-1">
+                            <div class="row">
+                                <div class="col s2">
+                                    {% if question.student.userprofile.photo %}
+                                    <img src="{{ question.student.userprofile.photo.url }}"
+                                        class="circle responsive-img">
+                                    {% else %}
+                                    <img src="{% static 'img/no_avatar.jpg' %}" class="circle responsive-img">
+                                    {% endif %}
+                                </div>
+                                <div class="col s10">
+                                    <p class="black-text"><b>{{ question.student.full_name }}</b></p>
+                                    <p class="black-text">{{question.created_at | naturaltime }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Answers Count  -->
+                    <div class="col s12">
+                        <h5><b>Answers: {{ answers.count }}</b></h5>
+                        <div class="divider"></div>
+                    </div>
+                    {% csrf_token %}
+                    <input type="hidden" name="url_path" value="{{ request.get_full_path }}">
+                    <!-- Answers  -->
+                    <div class="col s12">
+                        {% for answer in answers %}
+                        <div class="col s12">
+                            <div class="card-panel grey lighten-5 z-depth-2">
+                                {% if answer.is_accepted_answer %}
+                                <div class="col s12 right-align">
+                                    <i class="material-icons medium green-text">done</i>
+                                </div>
+                                {% endif %}
+                                <div class="col s12">
+                                    {{ answer.content | safe }}
+                                </div>
+                                <div class="row">
+                                    <div class="col s2">
+                                        {% if answer.student.userprofile.photo %}
+                                        <img src="{{ answer.student.userprofile.photo.url }}"
+                                            class="circle responsive-img">
+                                        {% else %}
+                                        <img src="{% static 'img/no_avatar.jpg' %}" class="circle responsive-img">
+                                        {% endif %}
+                                    </div>
+                                    <div class="col s10">
+                                        <p class="black-text"><b>{{ answer.student.full_name }}</b></p>
+                                        <p class="black-text"><b>Answered: </b>{{answer.created_at | naturaltime }}
+                                        </p>
+                                    </div>
+                                    <!-- Votes  -->
+                                    
+                                    <div class="col s12">
+                                        <a href="" class="vote {% if request.user in answer.up_votes.all %} green-text {% endif %}" 
+                                            vote-type="U" answer-id="{{ answer.id }}"><i
+                                                class="material-icons">thumb_up</i>Up vote</a>
+                                        <a href="" class="vote {% if request.user in answer.down_votes.all %} red-text {% endif %}" 
+                                            vote-type="D" answer-id="{{ answer.id }}"><i
+                                                class="material-icons">thumb_down</i>Down vote</a>
+
+                                        {% if moderator %}
+                                        <a href="{{ answer.get_mark_as_answer_absolute_url }}"><i class="material-icons">done</i>Mark as answer</a>
+                                        {% endif %}
+                                        <span class="card-title"><b>Votes: </b></span>
+                                        <span id="answerVotes{{ answer.id }}"
+                                            class="card-title"><b>{{ answer.votes }}</b></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                     <!-- Add Answer  -->
+                     <div class="col s12">
+                        <h5><b>Your Answer</b></h5>
+                        <div class="divider"></div>
+
+                        <div class="card">
+                            <form method="post" action="." role="form" class="col s12">
+                                {% csrf_token %}
+                                <div class="input-field col s12">
+                                    {{ form.content }}
+                                </div>
+                                <div class="input-field col s12">
+                                    <button type="submit" value="login"
+                                        class="btn waves-effect waves-light" id="submit-btn">
+                                        Submit
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="col s12 m12 center-align">
+                        {% if questions.has_previous %}
+                        <a href="?page={{ questions.previous_page_number }}" class="btn"><i
+                                class="material-icons">arrow_back</i>Back</a>
+                        {% endif %}
+
+                        {% if questions.has_next %}
+                        <a href="?page={{ questions.next_page_number }}" class="btn"><i
+                                class="material-icons">add</i>Load more</a>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block javascript %}
+<script src="{% static 'js/custom/question/answer_vote.js' %}"></script>
+{% endblock javascript %}

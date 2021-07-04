@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>{{ course.title|title}}</title>
+{% endblock title %}
+
+{% block content %}
+<!-- Navigation  -->
+{% include 'navigation.html' %}
+
+<!-- SideNav  -->
+{% include 'sidenav.html' %}
+
+<!-- Content  -->
+<div class="container">
+    <div class="section">
+        <!-- Course Modules  -->
+        <div class="section">
+            <h4>{{ course.title|title }}</h4>
+            <div class="divider"></div>
+        </div>
+
+        <div class="row">
+            <!-- Course Sidenav  -->
+            {% include 'classroom/course_sidenav.html' with nav_modules='active' %}
+            <!-- Modules -->
+            <div class="col s9">
+                {% if is_teacher %}
+                <a href="{{ course.get_add_module_absolute_url }}"
+                    class="btn-floating btn-large waves-effect waves-light red right"><i
+                        class="material-icons">add</i></a>
+                {% endif %}
+
+                <div class="section">
+                    <h4>Modules</h4>
+                    <div class="divider"></div>
+
+                    <ul class="collapsible">
+                        {% for module in modules %}
+                        <li>
+                            <div class="collapsible-header"><i
+                                    class="material-icons">expand_more</i><b>{{ module.title|title }}</b></div>
+                            <div class="collapsible-body">
+                                {% if is_teacher %}
+                                <a href="{{ module.get_add_page_absolute_url }}" class="btn-small"><i
+                                        class="material-icons">add</i>Add new page</a>
+                                <a href="{{ module.get_add_quiz_absolute_url }}" class="btn-small"><i
+                                        class="material-icons">add</i>Add new quiz</a>
+                                <a href="{{ module.get_add_assignment_absolute_url }}" class="btn-small"><i
+                                        class="material-icons">add</i>add new assignment</a>
+                                {% endif %}
+                                <div class="collection">
+                                    <br>
+                                    {% for page in module.pages.all %}
+                                    <a href="{{ page.get_absolute_url }}"
+                                        class="collection-item"><i class="material-icons">segment</i> {{ page.title|title }}
+                                        <div class="secondary-content">
+                                            Completed:
+                                            <i class="material-icons secondary-content">
+                                                {% if page.id in page_completions %}check_circle{% else %}panorama_fish_eye{% endif %}
+                                            </i>
+                                        </div>
+                                    </a>
+                                    {% endfor %}
+                                    {% for quiz in module.quizzes.all %}
+                                    <a href="{{ quiz.get_absolute_url }}"
+                                        class="collection-item"><i class="material-icons">fact_check</i>
+                                        {{ quiz.title|title }}
+                                        <div class="secondary-content">
+                                            Completed:
+                                            <i
+                                                class="material-icons secondary-content">{% if quiz.id in quiz_completions %}check_circle{% else %}panorama_fish_eye{% endif %}</i>
+                                        </div>
+                                    </a>
+                                    {% endfor %}
+                                    {% for assignment in module.assignments.all %}
+                                    <a href="{{ assignment.get_absolute_url }}"
+                                        class="collection-item"><i class="material-icons">fact_check</i>
+                                        {{ assignment.title|title }}
+                                        <div class="secondary-content">
+                                            Completed:
+                                            <i
+                                                class="material-icons secondary-content">{% if assignment.id in assignment_completions %}check_circle{% else %}panorama_fish_eye{% endif %}</i>
+                                        </div>
+                                    </a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

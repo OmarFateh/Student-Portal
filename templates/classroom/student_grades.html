@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>{{ course.title|title}}</title>
+{% endblock title %}
+
+{% block content %}
+<!-- Navigation  -->
+{% include 'navigation.html' %}
+
+<!-- SideNav  -->
+{% include 'sidenav.html' %}
+
+<!-- Content  -->
+<div class="container">
+    <div class="section">
+        <!-- Course Grades  -->
+        <div class="section">
+            <h4>{{ course.title|title }}</h4>
+            <div class="divider"></div>
+        </div>
+
+        <div class="row">
+            <!-- Course Sidenav  -->
+            {% include 'classroom/course_sidenav.html' with nav_student_submissions='active' %}
+            <!-- Grades -->
+            <div class="col s9">
+                <div class="section">
+                    <h4>My Submissions</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="center-align">Assignment</th>
+                                <th class="center-align">Due</th>
+                                <th class="center-align">Submited</th>
+                                <th class="center-align">Status</th>
+                                <th class="center-align">Score</th>
+                                <th class="center-align">Out of</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for grade in grades %}
+                            <tr>
+                                <td class="center-align">{{ grade.submission.assignment.title }}</td>
+                                <td class="center-align">{{ grade.submission.assignment.due }}</td>
+                                <td class="center-align">{{ grade.submission.created_at }}</td>
+                                <td class="center-align">{{ grade.status }}</td>
+                                <td class="center-align">{{ grade.points }}</td>
+                                <td class="center-align">{{ grade.submission.assignment.points }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="6" class="center-align yellow"><b>No Grades</b></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,56 @@
+{% load static %}
+
+<ul id="slide-out" class="sidenav">
+    {% if request.user.is_authenticated %}
+    <li>
+        <div class="user-view">
+            <div class="background">
+                {% if nav_profile.banner %}
+                <img src="">
+                {% else %}
+                <img src="{% static 'img/nobanner.jpg' %}">
+                {% endif %}
+            </div>
+            <a href="#user">
+                {% if nav_profile.picture %}
+                <img src="" class="circle responsive-img">
+                {% else %}
+                <img src="{% static 'img/no_avatar.jpg' %}" class="circle responsive-img">
+                {% endif %}
+            </a>
+            <a href="#name"><span class="white-text name">{{ nav_profile.user.first_name }}
+                    {{ nav_profile.user.last_name }}</span></a>
+            <a href="#email"><span class="white-text email">{{ nav_profile.user.email }}</span></a>
+        </div>
+    </li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li><a href=""><i class="material-icons">person</i>My profile</a></li>
+    <li><a href=""><i class="material-icons">dashboard</i>Dashboard</a></li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li><a class="subheader">Learning</a></li>
+    <li><a href="6"><i class="material-icons">menu_book</i>Courses</a></li>
+    <li><a href="#!"><i class="material-icons">inbox</i>Inbox</a></li>
+    <li><a href="#!"><i class="material-icons">circle_notifications</i>Notifications</a></li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li><a class="subheader">Teaching</a></li>
+    <li><a href="{% url 'classroom:my-courses' %}"><i class="material-icons">menu_book</i>Your Courses</a></li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li><a href="{% url 'password_change' %}"><i class="material-icons">lock</i>Change Password</a></li>
+    <li><a href="{% url 'accounts:logout' %}"><i class="material-icons">power_off</i>Log out</a></li>
+    {% else %}
+    <li><a href="{% url 'classroom:categories' %}"><i class="material-icons left">article</i>Courses</a></li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li><a href="{% url 'accounts:login' %}"><i class="material-icons left">login</i>Login</a></li>
+    <li><a href="{% url 'accounts:register' %}"><i class="material-icons left">account_box</i>Register</a></li>
+    {% endif %}
+</ul>

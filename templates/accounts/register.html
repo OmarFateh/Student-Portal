@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Register</title>
+{% endblock title %}
+
+{% block content %}
+<div class="row center-align">
+    <div class="col s12 m8 offset-m2 l6 offset-l3">
+        <h4>Student Portal</h4>
+        <div class="card">
+            <form method="post" action="." role="form" data-validate-email-url="{% url 'accounts:js-validate-email' %}">
+                {% csrf_token %}
+                <h4 class="title pt-10 is-3">Create an account</h4>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">account_circle</i>
+                    {{ form.full_name }}
+                    <label for="id_full_name">Full Name</label>
+                </div>
+                <!-- Display full name error message -->
+                {% if form.full_name.errors %}
+                    {% for error in form.full_name.errors %}
+                        <div class='error-message'>{{ error|escape }}</div>
+                    {% endfor %}
+                {% endif %}
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">email</i>
+                    {{ form.email }}
+                    <label for="id_email">Email</label>
+                    <span class="helper-text" data-error="wrong"></span>
+                    <div class="js-validate-email-error error-message" style="display: none;">
+                    </div>
+                    <div class="js-validate-email1-error error-message" style="display: none;">
+                    </div>
+                </div>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">email</i>
+                    {{ form.email2 }}
+                    <label for="id_email2">Confirm Email</label>
+                    <span class="helper-text" data-error="wrong"></span>
+                    <div class="js-validate-email1-error error-message" style="display: none;">
+                    </div>
+                </div>
+                <!-- Display emails error message -->
+                {% if form.email2.errors %}
+                    {% for error in form.email2.errors %}
+                        <div class='error-message'>{{ error|escape }}</div>
+                    {% endfor %}
+                {% endif %}
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">lock</i>
+                    {{ form.password1 }}
+                    <label for="id_password1">Password</label>
+                    <div class="js-validate-password1-error error-message" style="display: none;">
+                    </div>
+                </div>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">lock</i>
+                    {{ form.password2 }}
+                    <label for="id_password2">Confirm Password</label>
+                    <div class="js-validate-password1-error error-message" style="display: none;">
+                    </div>
+                </div>
+                <!-- Display passwords error message -->
+                {% if form.password2.errors %}
+                    {% for error in form.password2.errors %}
+                        <div class='error-message'>{{ error|escape }}</div>
+                    {% endfor %}
+                {% endif %}
+                <div class="field">
+                    <p class="control">
+                        <button type="submit" value="register" class="btn waves-effect waves-light" id="submit-btn">
+                            Register
+                        </button>
+                    </p>
+                </div>
+                <a href="{% url 'accounts:login' %}">Already have an account? Click Here.</a>
+                <br>
+                <div class="pb-10"><a href="{% url 'password_reset' %}">Forgot your password?</a></div>
+            </form>
+        </div>
+    </div>
+</div>                
+{% endblock content %}
+
+{% block javascript %}
+<script src="{% static 'js/custom/accounts/register.js' %}"></script>
+<script src="{% static 'js/custom/accounts/email_validation.js' %}"></script>
+<script src="{% static 'js/custom/accounts/passwords_validation.js' %}"></script>
+{% endblock javascript %}

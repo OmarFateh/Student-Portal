@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Activation Email Sent</title>
+{% endblock title %}
+
+{% block content %}
+<div class="row center-align">
+    <div class="col s6 offset-s3">
+        <h4>Student Portal</h4>
+        <div class="card">
+            <h4 class="title pt-10 is-3">Activation Email Sent</h4>
+            <p class="">We've emailed you instructions for activating your account. If they haven't
+                arrived in a few minutes, check your spam folder.</p>
+            <div class="pb-10"><a href="{% url 'accounts:login' %}">Login</a></div>
+        </div>
+    </div>
+</div>        
+{% endblock content %}

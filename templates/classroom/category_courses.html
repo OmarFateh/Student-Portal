@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>{{ category.title|title }}</title>
+{% endblock title %}
+
+{% block content %}
+<!-- Navigation  -->
+{% include 'navigation.html' %}
+
+<!-- SideNav  -->
+{% include 'sidenav.html' %}
+
+<!-- Content  -->
+<div class="container">
+    <div class="section">
+        <!-- Courses  -->
+        <div class="section">
+            <h4>{{ category.title|title }}</h4>
+            <div class="divider"></div>    
+        </div>
+
+        <div class="row">
+            {% for course in courses %}
+            <div class="col s12 m4">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <a href="{{ course.get_absolute_url }}"><img class="activator" src="{{ course.photo.url }}"></a>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">
+                            <a href="{{ course.get_absolute_url }}"><b>{{ course.title|title }}</b></a>
+                            <i class="material-icons right">more_vert</i>
+                        </span>
+                        <p class="title pb-10"><b>{{ course.students.count }}</b> Student{{ course.students.count|pluralize }}</p>
+                        <div class="center-align">
+                            {% if request.user in course.students.all %}
+                            <a href="{{ course.get_absolute_url }}" class="btn waves-effect waves-light">Go to Course</a>
+                            {% else %}
+                            <a href="{{ course.get_enroll_absolute_url }}" class="btn waves-effect waves-light">Enroll</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">About<i class="material-icons right">close</i></span>
+                        <p>{{ course.description }}</p>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <h5 class="yellow-text center">There are no Courses.</h5>
+            {% endfor %}
+        </div>    
+    </div>
+</div>
+
+{% endblock content %}

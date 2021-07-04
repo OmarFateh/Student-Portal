@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>{{ course.title|title}}</title>
+{% endblock title %}
+
+{% block content %}
+<!-- Navigation  -->
+{% include 'navigation.html' %}
+
+<!-- SideNav  -->
+{% include 'sidenav.html' %}
+
+<!-- Content  -->
+<div class="container">
+    <div class="section">
+        <!-- Course Detail  -->
+        <div class="section">
+            <h4>{{ course.title|title }}</h4>
+            <div class="divider"></div>
+        </div>
+
+        <div class="row">
+            <!-- Course Sidenav  -->
+            {% include 'classroom/course_sidenav.html' with nav_home='active' nav_modules='' %}
+            <!-- Announcements -->
+            <div class="col s9">
+                {% if is_teacher %}
+                <a class="btn-floating btn-large waves-effect waves-light red right"><i
+                        class="material-icons">add</i></a>
+                {% endif %}
+
+                <div class="section">
+                    <h4>Recent Announcements</h4>
+                    <div class="divider"></div>
+                    <div>{{ course.syllabus | safe }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

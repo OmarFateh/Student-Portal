@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>{{ quiz.title|title }}</title>
+{% endblock title %}
+
+{% block content %}
+<!-- Navigation  -->
+{% include 'navigation.html' %}
+
+<!-- SideNav  -->
+{% include 'sidenav.html' %}
+
+<!-- Content  -->
+<div class="container">
+    <div class="section">
+        <!-- Course Module Quiz  -->
+        <div class="section">
+            <h4>{{ quiz.title|title }}</h4>
+            <div class="divider"></div>
+        </div>
+
+        <div class="row">
+            <div class="col s4">
+                <h5>Due:</h5>
+                <p>{{ quiz.due }}</p>
+            </div>
+
+            <div class="col s4">
+                <h5>Allowed Attempts:</h5>
+                <p>{{ quiz.allowed_attempts }}</p>
+            </div>
+
+            <div class="col s4">
+                <h5>Time limit:</h5>
+                <p>{{ quiz.time_limit_mins }} mins</p>
+            </div>
+
+            <div class="col s12">
+                {{ quiz.description | safe }}
+            </div>
+            <!-- Student Attempts  -->
+            {% if student_attempts %}
+            <div class="col s12">
+                <ul class="collection with-header">
+                    <li class="collection-header">
+                        <h4>My attempts</h4>
+                    </li>
+                    {% for attempt in student_attempts %}
+                    <li class="collection-item">
+                        <a href="{{ attempt.get_absolute_url }}">
+                            <h5>Scored: {{ attempt.attempter.score }}</h5>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+            {% if is_student %}
+            <div class="col s12 center-align">
+                <a class="btn" href="{{ quiz.get_take_quiz_absolute_url }}">Take Quiz</a>      
+            </div>
+            {% endif %}
+        </div>
+
+    </div>
+</div>
+
+<!-- Footer  -->
+{% include 'footer.html' %}
+
+{% endblock content %}
+
+{% block javascript %}
+{% endblock javascript %}

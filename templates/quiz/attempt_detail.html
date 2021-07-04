@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>{{ quiz.title|title }}</title>
+{% endblock title %}
+
+{% block content %}
+<!-- Navigation  -->
+{% include 'navigation.html' %}
+
+<!-- SideNav  -->
+{% include 'sidenav.html' %}
+
+<!-- Content  -->
+<div class="container">
+    <div class="section">
+        <!-- Course Module Quiz  -->
+        <div class="section">
+            <h4>{{ quiz.title|title }}</h4>
+            <div class="divider"></div>
+        </div>
+
+        <div class="row">
+            <div class="col s4">
+                <h5>Due:</h5>
+                <p>{{ quiz.due }}</p>
+            </div>
+
+            <div class="col s4">
+                <h5>Allowed Attempts:</h5>
+                <p>{{ quiz.allowed_attempts }}</p>
+            </div>
+
+            <div class="col s4">
+                <h5>Time limit:</h5>
+                <p>{{ quiz.time_limit_mins }} mins</p>
+            </div>
+
+            <div class="col s12">
+                {{ quiz.description | safe }}
+            </div>
+            <!-- Attempt's Question  -->
+            <div class="col s12">
+                <form class="col s12">
+                    {% csrf_token %}
+                    {% for question in quiz.questions.all %}
+                        <div class="col s12">
+                            <br>
+                            <p>{{ forloop.counter }} - {{ question.question_text }}</p>
+                            <input type="hidden" name="question" value="{{ question.id }}">
+                        </div>
+                        {% for answer in question.answers.all %}
+                        <div class="input col s12">
+                            <label>
+                                <input name="answer" type="checkbox" value="{{ answer.id }}"
+                                    {% if answer.is_correct %}checked="checked" {% endif %} />
+                                <span>{{ answer.answer_text }}</span>
+                            </label>
+                        </div>
+                        {% endfor %}
+                    {% endfor %}
+                </form>
+            </div>
+            <!-- Attempt's Answers  -->
+            <div class="section">
+                <br>
+                <h5>Your Answers</h5>
+                <div class="divider"></div>
+                {% for answer in attempt.answer.all %}
+                <h5 class="{% if answer.is_correct %}green{% else %}red{% endif %}-text">
+                    <b>{{ answer.answer_text }}</b></h5>
+                {% endfor %}
+                <br>
+                <h5>Your Score: {{ attempt.score }}</h5>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Footer  -->
+{% include 'footer.html' %}
+
+{% endblock content %}
+
+{% block javascript %}
+{% endblock javascript %}

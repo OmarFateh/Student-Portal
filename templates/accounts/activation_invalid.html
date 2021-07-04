@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Activation Account Failed</title>
+{% endblock title %}
+
+{% block content %}
+<div class="row center-align">
+    <div class="col s6 offset-s3">
+        <h4>Student Portal</h4>
+        <div class="card">
+            <h4 class="title pt-10 is-3">Account Activation Failed</h4>
+            <p class="">The account activation link was invalid, possibly because it has already been used. Please request a new activation
+                reset.</p>
+            <div class="pb-10">
+                <a href="{% url 'accounts:register' %}">Register</a>
+            </div>
+        </div>
+    </div>
+</div>        
+{% endblock content %}
