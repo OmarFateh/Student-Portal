@@ -29,36 +29,36 @@ Run the server
 
 ## Testing
 * django unit testing:  
-              - accounts app (forms, models, and views) 
-              - classroom app (forms, models, and views) 
+              - accounts app (forms, models, and views)     
+              - classroom app (forms, models, and views)   
 
 * pytest & factoryboy:  
-              - question app (forms, models, and views) 
-              - module app (models) 
+              - question app (forms, models, and views)  
+              - module app (models)  
 
 ## Features
 * Authentication: Registeration, login, logout, account activation, change and reset password. 
 
 * Teacher:  
-      - add/update/delete course 
-      - add course's modules 
-      - add quiz, page, and assignment to each module. 
-      - grade the submitted quiz and assignment. 
-      - add question 
-      - add answer 
-      - vote up/down answer
-      - mark answer as the correct one 
+      - add/update/delete course  
+      - add course's modules  
+      - add quiz, page, and assignment to each module.  
+      - grade the submitted quiz and assignment.  
+      - add question  
+      - add answer  
+      - vote up/down answer  
+      - mark answer as the correct one  
 
 * Student:  
-      - enrol to a course  
-      - view all course's module  
-      - solve course's quizzes 
+      - enrol to a course   
+      - view all course's module   
+      - solve course's quizzes  
       - submit assignment  
-      - view his course's grade and submissions 
-      - add question 
-      - add answer 
-      - vote up/down answer
-      - mark answer as the correct one for his question
+      - view his course's grade and submissions  
+      - add question  
+      - add answer  
+      - vote up/down answer  
+      - mark answer as the correct one for his question  
 
 ## User Credintials
 - 
