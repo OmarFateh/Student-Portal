@@ -1,10 +1,11 @@
 # Student Portal
-> Student portal with Testing and Internationalization made with django framework and JS.
+> Student portal with Testing, Internationalization and Localization made with django framework and JS.
 
 ## Table of contents
 * [Technologies](#technologies)
 * [Setup](#setup)
 * [Testing](#testing)
+* [Internationalization & Localization](#internationalization & localization)
 * [Features](#features)
 * [User Credintials](#User-Credintials)
 * [TODO](#TODO)
@@ -36,6 +37,11 @@ Run the server
               - question app (forms, models, and views)  
               - module app (models)  
 
+## Internationalization & Localization
+* Two languages, English & Spanish:      
+                        - classroom app  
+
+
 ## Features
 * Authentication: Registeration, login, logout, account activation, change and reset password. 
 
@@ -61,7 +67,5 @@ Run the server
       - mark answer as the correct one for his question  
 
 ## User Credintials
-- 
-
-## TODO
-* Implement Internationalization and add two languages
+- email: fatehomar1@gmail.com  
+- password: admin1600
