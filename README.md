@@ -5,10 +5,10 @@
 * [Technologies](#technologies)
 * [Setup](#setup)
 * [Testing](#testing)
-* [Internationalization & Localization](#internationalization & localization)
+* [Internationalization & Localization](#internationalization-&-localization)
 * [Features](#features)
 * [User Credintials](#User-Credintials)
-* [TODO](#TODO)
+
 
 ## Technologies
 * Python 3.9
