@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% load static %}
 
 {% block title %}
@@ -33,7 +34,7 @@
                             <h4 class="card-title">{{ grade.submission.comment }}</h4>
                             <a href="{{ grade.submission.file.url }}" download>
                                 <i class="material-icons">download</i>{{ grade.submission.get_filename }} -
-                                Download</a>
+                                {% trans 'Download' %}</a>
                         </div>
                     </div>
 
@@ -41,17 +42,17 @@
                         <form method="post" action="." role="form"
                             class="col s12">
                             {% csrf_token %}
-                            <h4>Assignment maximum points: <b>{{ grade.submission.assignment.points }}</b></h4>
+                            <h4>{% trans 'Assignment maximum points: ' %}<b>{{ grade.submission.assignment.points }}</b></h4>
 
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">plus_one</i>
                                 <input id="icon_prefix" type="text" name="points" class="validate">
-                                <label for="icon_prefix">Points</label>
+                                <label for="icon_prefix">{% trans 'Points' %}</label>
                             </div>
 
                             <div class="col s12">
                                 <button type="submit" value="login" class="btn waves-effect waves-light" id="submit-btn">
-                                    Submit
+                                    {% trans 'Submit' %}
                                 </button>
                             </div>
                         </form>

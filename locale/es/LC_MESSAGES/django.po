@@ -1,0 +1,319 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-07-06 22:06+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\classroom\models.py:24 .\classroom\models.py:57
+msgid "title"
+msgstr "Título"
+
+#: .\classroom\models.py:25 .\classroom\models.py:58
+msgid "slug"
+msgstr "slug"
+
+#: .\classroom\models.py:26
+msgid "icon"
+msgstr "icono"
+
+#: .\classroom\models.py:29 .\templates\classroom\add_course.html:34
+#: .\templates\classroom\update_course.html:34
+msgid "Category"
+msgstr "Categoría"
+
+#: .\classroom\models.py:30 .\templates\classroom\categories.html:6
+#: .\templates\classroom\categories.html:34
+msgid "Categories"
+msgstr "Categorías"
+
+#: .\classroom\models.py:59
+msgid "teacher"
+msgstr "Maestro"
+
+#: .\classroom\models.py:60
+msgid "category"
+msgstr "Categoría"
+
+#: .\classroom\models.py:61
+msgid "students"
+msgstr "Estudiante"
+
+#: .\classroom\models.py:62
+msgid "description"
+msgstr "Descripción"
+
+#: .\classroom\models.py:64
+msgid "photo"
+msgstr "foto"
+
+#: .\classroom\models.py:67
+msgid "Course"
+msgstr "Curso"
+
+#: .\classroom\models.py:68 .\templates\navigation.html:10
+#: .\templates\sidenav.html:36 .\templates\sidenav.html:50
+msgid "Courses"
+msgstr "Cursos"
+
+#: .\classroom\models.py:124
+msgid "course"
+msgstr "Curso"
+
+#: .\classroom\models.py:125
+msgid "submission"
+msgstr "Entrega."
+
+#: .\classroom\models.py:126
+msgid "points"
+msgstr "Puntos"
+
+#: .\classroom\models.py:127
+msgid "status"
+msgstr "Estado"
+
+#: .\classroom\models.py:130 .\templates\classroom\course_grades.html:42
+#: .\templates\classroom\course_grades.html:57
+msgid "Grade"
+msgstr "Calificacion"
+
+#: .\classroom\models.py:131
+msgid "Grades"
+msgstr "Calificaciones"
+
+#: .\project\settings.py:128
+msgid "English"
+msgstr "Inglés"
+
+#: .\project\settings.py:129
+msgid "Spanish"
+msgstr "Español"
+
+#: .\templates\classroom\add_course.html:6
+msgid "Add Course"
+msgstr "Agregar Curso"
+
+#: .\templates\classroom\add_course.html:23
+msgid "New Course"
+msgstr "Nuevo Curso"
+
+#: .\templates\classroom\add_course.html:26
+#: .\templates\classroom\update_course.html:26
+msgid "Title"
+msgstr "Título"
+
+#: .\templates\classroom\add_course.html:30
+#: .\templates\classroom\update_course.html:30
+msgid "Description"
+msgstr "Descripción"
+
+#: .\templates\classroom\add_course.html:48
+msgid "Create"
+msgstr "Crear"
+
+#: .\templates\classroom\categories.html:23
+msgid "Learning"
+msgstr "El Aprendizaje"
+
+#: .\templates\classroom\categories.html:24
+msgid "Earn your certificate, learn a new skill or get a degree here."
+msgstr ""
+"Obtenga su certificado, aprenda una nueva habilidad u obtenga un título aquí."
+
+#: .\templates\classroom\categories.html:48
+msgid "There are no Categories."
+msgstr "No hay Categorías."
+
+#: .\templates\classroom\category_courses.html:40
+msgid "Go to Course"
+msgstr "Ir al Curso"
+
+#: .\templates\classroom\category_courses.html:42
+msgid "Enroll"
+msgstr "Inscribirse"
+
+#: .\templates\classroom\category_courses.html:47
+#: .\templates\classroom\my_courses.html:42
+msgid "About"
+msgstr "Sobre el Curso"
+
+#: .\templates\classroom\category_courses.html:53
+#: .\templates\classroom\my_courses.html:48
+msgid "There are no Courses."
+msgstr "No hay Cursos."
+
+#: .\templates\classroom\course_detail.html:36
+msgid "Recent Announcements"
+msgstr "Anuncios Recientes"
+
+#: .\templates\classroom\course_grades.html:31
+#: .\templates\classroom\course_sidenav.html:16
+msgid "Student Submissions"
+msgstr "Entregas de Estudiante"
+
+#: .\templates\classroom\course_grades.html:35
+#: .\templates\classroom\my_courses.html:37
+msgid "Student"
+msgstr "Estudiante"
+
+#: .\templates\classroom\course_grades.html:36
+#: .\templates\classroom\student_grades.html:35
+msgid "Assignment"
+msgstr "Tarea"
+
+#: .\templates\classroom\course_grades.html:37
+#: .\templates\classroom\student_grades.html:36
+msgid "Due"
+msgstr "Fecha de Vencimiento"
+
+#: .\templates\classroom\course_grades.html:38
+#: .\templates\classroom\student_grades.html:37
+msgid "Submitted"
+msgstr "Entregado"
+
+#: .\templates\classroom\course_grades.html:39
+#: .\templates\classroom\student_grades.html:38
+msgid "Status"
+msgstr "Estado"
+
+#: .\templates\classroom\course_grades.html:40
+#: .\templates\classroom\student_grades.html:39
+msgid "Score"
+msgstr "Resultado"
+
+#: .\templates\classroom\course_grades.html:41
+#: .\templates\classroom\student_grades.html:40
+msgid "Out of"
+msgstr "De"
+
+#: .\templates\classroom\course_grades.html:61
+#: .\templates\classroom\student_grades.html:56
+msgid "No Grades"
+msgstr "no hay Calificaciones"
+
+#: .\templates\classroom\course_sidenav.html:6
+msgid "Classroom"
+msgstr "Clase"
+
+#: .\templates\classroom\course_sidenav.html:8
+msgid "Home"
+msgstr "Inicio"
+
+#: .\templates\classroom\course_sidenav.html:9
+msgid "Modules"
+msgstr "Módulos"
+
+#: .\templates\classroom\course_sidenav.html:10
+msgid "Submissions"
+msgstr "Entregas"
+
+#: .\templates\classroom\course_sidenav.html:11
+msgid "Questions"
+msgstr "Preguntas"
+
+#: .\templates\classroom\course_sidenav.html:14
+msgid "Teacher"
+msgstr "Maestro"
+
+#: .\templates\classroom\grade_submission.html:37
+msgid "Download"
+msgstr "Descargar"
+
+#: .\templates\classroom\grade_submission.html:45
+msgid "Assignment maximum points: "
+msgstr "Puntos máximos de tarea: "
+
+#: .\templates\classroom\grade_submission.html:50
+msgid "Points"
+msgstr "Puntos"
+
+#: .\templates\classroom\grade_submission.html:55
+msgid "Submit"
+msgstr "Entregar"
+
+#: .\templates\classroom\my_courses.html:6
+#: .\templates\classroom\my_courses.html:21
+msgid "My Courses"
+msgstr "Mis Cursos"
+
+#: .\templates\classroom\my_courses.html:38
+msgid "Edit"
+msgstr "Editar"
+
+#: .\templates\classroom\my_courses.html:39
+msgid "Delete"
+msgstr "Borrar"
+
+#: .\templates\classroom\student_grades.html:31
+msgid "My Submissions"
+msgstr "Mis Entregas"
+
+#: .\templates\classroom\update_course.html:6
+#: .\templates\classroom\update_course.html:48
+msgid "Update"
+msgstr "Actualizar"
+
+#: .\templates\classroom\update_course.html:23
+msgid "Update Course"
+msgstr "Actualizar Curso"
+
+#: .\templates\navigation.html:5
+msgid "Student Portal"
+msgstr "Portal Estudiantil"
+
+#: .\templates\navigation.html:13
+msgid "Profile"
+msgstr "Perfil"
+
+#: .\templates\navigation.html:16 .\templates\sidenav.html:54
+msgid "Login"
+msgstr "Iniciar"
+
+#: .\templates\navigation.html:17 .\templates\sidenav.html:55
+msgid "Register"
+msgstr "Crear cuenta nueva"
+
+#: .\templates\navigation.html:20
+msgid "Language"
+msgstr "Idioma"
+
+#: .\templates\sidenav.html:30
+msgid "My profile"
+msgstr "Mi perfil"
+
+#: .\templates\sidenav.html:31
+msgid "Dashboard"
+msgstr "Panel de control"
+
+#: .\templates\sidenav.html:37
+msgid "Inbox"
+msgstr "Mensajes"
+
+#: .\templates\sidenav.html:38
+msgid "Notifications"
+msgstr "Notificaciones"
+
+#: .\templates\sidenav.html:43
+msgid "Your Courses"
+msgstr "Tus Cursos"
+
+#: .\templates\sidenav.html:47
+msgid "Change Password"
+msgstr "Cambiar la Contraseña"
+
+#: .\templates\sidenav.html:48
+msgid "Log out"
+msgstr "Salir"

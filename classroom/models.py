@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth import get_user_model
+from django.utils.translation import gettext_lazy as _
 
 from userprofile.models import BaseTimestamp
 from assignment.models import Submission
@@ -20,12 +21,13 @@ class Category(BaseTimestamp):
     """
     Category model.
     """
-    title = models.CharField(max_length=100)
-    slug = models.SlugField(unique=True)
-    icon = models.CharField(max_length=100)
+    title = models.CharField(_('title'), max_length=100)
+    slug = models.SlugField(_('slug'), unique=True)
+    icon = models.CharField(_('icon'), max_length=100)
     
     class Meta:
-        verbose_name_plural = 'Categories'
+        verbose_name = _('Category')
+        verbose_name_plural = _('Categories')
 
     def __str__(self):
         # Return category's title
@@ -52,16 +54,18 @@ class Course(BaseTimestamp):
     """
     Course model.
     """
-    title = models.CharField(max_length=200)
-    slug = models.SlugField(unique=True, blank=True)
-    teacher = models.ForeignKey(User, related_name='my_courses', on_delete=models.CASCADE)
-    category = models.ForeignKey(Category, related_name='courses', on_delete=models.CASCADE)
-    students = models.ManyToManyField(User, related_name='enrolled_courses', blank=True, through=CourseStudent)
-    description = models.TextField()
+    title = models.CharField(_('title'), max_length=200)
+    slug = models.SlugField(_('slug'), unique=True, blank=True)
+    teacher = models.ForeignKey(User, related_name='my_courses', on_delete=models.CASCADE, verbose_name=_('teacher'))
+    category = models.ForeignKey(Category, related_name='courses', on_delete=models.CASCADE, verbose_name=_('category'))
+    students = models.ManyToManyField(User, related_name='enrolled_courses', blank=True, through=CourseStudent, verbose_name=_('students'))
+    description = models.TextField(_('description'))
     syllabus = RichTextField()
-    photo = models.ImageField(upload_to=course_image)
+    photo = models.ImageField(_('photo'), upload_to=course_image)
 
     class Meta:
+        verbose_name = _('Course')
+        verbose_name_plural = _('Courses')
         ordering = ['-created_at']
 
     def __str__(self):
@@ -117,10 +121,14 @@ class Grade(models.Model):
         ('Pending', 'Pending'),
         ('Graded', 'Graded'),
     )
-    course = models.ForeignKey(Course, related_name='grades', on_delete=models.CASCADE)
-    submission = models.ForeignKey(Submission, related_name='grades', on_delete=models.CASCADE)
-    points = models.PositiveIntegerField(default=0)
-    status = models.CharField(choices=STATUS_CHOICES, default='Pending', max_length=10)
+    course = models.ForeignKey(Course, related_name='grades', on_delete=models.CASCADE, verbose_name=_('course'))
+    submission = models.ForeignKey(Submission, related_name='grades', on_delete=models.CASCADE, verbose_name=_('submission'))
+    points = models.PositiveIntegerField(_('points'), default=0)
+    status = models.CharField(_('status'), choices=STATUS_CHOICES, default='Pending', max_length=10)
+
+    class Meta:
+        verbose_name = _('Grade')
+        verbose_name_plural = _('Grades')
 
     def __str__(self):
         # Return course's title, student's full name and grade's points.

@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% load static %}
 
 {% block title %}
-<title>Categories</title>
+<title>{% trans 'Categories' %}</title>
 {% endblock title %}
 
 {% block content %}
@@ -19,8 +20,8 @@
         <div class="section no-pad-bot" id="index-banner">
             <div class="container">
                 <br><br>
-                <h2 class="header orange-text center">Learning</h2>
-                <h5 class="header col s12 light center">Earn your certificate, learn a new skill or get a degree here.</h5>
+                <h2 class="header orange-text center">{% trans 'Learning' %}</h2>
+                <h5 class="header col s12 light center">{% trans 'Earn your certificate, learn a new skill or get a degree here.' %}</h5>
             </div>
             <!-- <div class="row center">
                 <br>
@@ -30,7 +31,7 @@
         
         <!-- Categories  -->
         <div class="section">
-            <h4>Categories</h4>
+            <h4>{% trans 'Categories' %}</h4>
             <div class="divider"></div>
         </div>
         <div class="row">
@@ -44,7 +45,7 @@
                 </a>
             </div>
             {% empty %}
-            <h5 class="yellow-text center">There are no Categories.</h5>
+            <h5 class="yellow-text center">{% trans 'There are no Categories.' %}</h5>
             {% endfor %}
         </div>
     </div>

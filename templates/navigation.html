@@ -1,19 +1,35 @@
+{% load i18n %}
+
 <nav class="light-blue" role="navigation">
     <div class="nav-wrapper container">
-        <a href="#" class="brand-logo"><i class="material-icons">cloud</i>Student Portal</a>
+        <a href="#" class="brand-logo"><i class="material-icons">cloud</i>{% trans 'Student Portal' %}</a>
         <a href="#" data-target="slide-out" class="sidenav-trigger">
             <i class="material-icons">menu</i>
         </a>
         <ul class="right hide-on-med-and-down">
-            <li><a href="{% url 'classroom:categories' %}"><i class="material-icons left">article</i>Courses</a></li>
+            <li><a href="{% url 'classroom:categories' %}"><i class="material-icons left">article</i>{% trans 'Courses' %}</a></li>
             {% if request.user.is_authenticated %}
             <li><a href="#" data-target="slide-out" class="sidenav-trigger show-on-large">
-                <i class="material-icons left">person</i>Profile</a>
+                <i class="material-icons left">person</i>{% trans 'Profile' %}</a>
             </li>
             {% else %}
-            <li><a href="{% url 'accounts:login' %}"><i class="material-icons left">login</i>Login</a></li>
-            <li><a href="{% url 'accounts:register' %}"><i class="material-icons left">account_box</i>Register</a></li>
+            <li><a href="{% url 'accounts:login' %}"><i class="material-icons left">login</i>{% trans 'Login' %}</a></li>
+            <li><a href="{% url 'accounts:register' %}"><i class="material-icons left">account_box</i>{% trans 'Register' %}</a></li>
             {% endif %}
+            <!-- Dropdown Trigger -->
+            <li><a class='dropdown-trigger btn' href='#' data-target='dropdown1'>{% trans 'Language' %}</a></li>
+
+            <!-- Dropdown Structure -->
+            <ul id='dropdown1' class='dropdown-content'>
+                {% get_current_language as LANGUAGE_CODE %}
+                {% get_available_languages as LANGUAGES %}
+                {% get_language_info_list for LANGUAGES as languages %}
+                {% for lang in languages %}
+                    <li>
+                        <a href="/{{ lang.code }}/">{{ lang.name_local|title }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
         </ul>
         <!-- <ul id="nav-mobile" class="sidenav">
             <li><a href="#" data-target="slide-out" class="sidenav-trigger show-on-large">

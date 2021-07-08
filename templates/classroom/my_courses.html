@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% load static %}
 
 {% block title %}
-<title>My Courses</title>
+<title>{% trans 'My Courses' %}</title>
 {% endblock title %}
 
 {% block content %}
@@ -17,7 +18,7 @@
     <div class="section">
         <!-- Courses  -->
         <div class="section">
-            <h4>My Courses</h4>
+            <h4>{% trans 'My Courses' %}</h4>
             <div class="divider"></div>
         </div>
 
@@ -33,18 +34,18 @@
                             <a href="{{ course.get_absolute_url }}"><b>{{ course.title|title }}</b></a>
                             <i class="material-icons right">more_vert</i>
                         </span>
-                        <p class="title pb-10"><b>{{ course.students.count }}</b> Student{{ course.students.count|pluralize }}</p>
-                        <a href="{{ course.get_update_absolute_url }}" class="btn">Edit</a>
-                        <a href="{{ course.get_delete_absolute_url }}" class="btn red">Delete</a>
+                        <p class="title pb-10"><b>{{ course.students.count }}</b> {% trans 'Student' %}{{ course.students.count|pluralize }}</p>
+                        <a href="{{ course.get_update_absolute_url }}" class="btn">{% trans 'Edit' %}</a>
+                        <a href="{{ course.get_delete_absolute_url }}" class="btn red">{% trans 'Delete' %}</a>
                     </div>
                     <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">About<i class="material-icons right">close</i></span>
+                        <span class="card-title grey-text text-darken-4">{% trans 'About' %}<i class="material-icons right">close</i></span>
                         <p>{{ course.description }}</p>
                     </div>
                 </div>
             </div>
             {% empty %}
-            <h5 class="yellow-text center">There are no Courses.</h5>
+            <h5 class="yellow-text center">{% trans 'There are no Courses.' %}</h5>
             {% endfor %}
         </div>
     </div>

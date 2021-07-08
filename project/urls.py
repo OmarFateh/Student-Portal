@@ -18,6 +18,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.contrib.auth import views as auth_views
 from django.conf.urls.static import static
+from django.conf.urls.i18n import i18n_patterns
 
 from accounts.decorators import unauthenticated_user
 from accounts.forms import (
@@ -28,14 +29,14 @@ from accounts.forms import (
 
 urlpatterns = [
     ## standard admin
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
     ## Regular Endpoints
     # Accounts
     path('', include(('accounts.urls', 'accounts'), namespace='accounts')),
     # Userprofile
     path('', include(('userprofile.urls', 'userprofile'), namespace='userprofile')),
     # Classroom 
-    path('', include(('classroom.urls', 'classroom'), namespace='classroom')),
+    # path('', include(('classroom.urls', 'classroom'), namespace='classroom')),
     # Module 
     path('', include(('module.urls', 'module'), namespace='module')),
     # Page
@@ -75,6 +76,11 @@ urlpatterns = [
     # CKEditor 
     path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
+
+urlpatterns += i18n_patterns(
+    path('admin/', admin.site.urls),
+    path('', include(('classroom.urls', 'classroom'), namespace='classroom')),
+)
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

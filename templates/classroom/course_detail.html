@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% load static %}
 
 {% block title %}
@@ -32,7 +33,7 @@
                 {% endif %}
 
                 <div class="section">
-                    <h4>Recent Announcements</h4>
+                    <h4>{% trans 'Recent Announcements' %}</h4>
                     <div class="divider"></div>
                     <div>{{ course.syllabus | safe }}</div>
                 </div>
